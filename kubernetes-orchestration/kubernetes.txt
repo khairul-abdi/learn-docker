@@ -1,0 +1,71 @@
+1. Konfigurasi yaml deployment
+
+```
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-app-deployment1
+spec:
+  selector:
+    matchLabels:
+      name: my-app1
+  template:
+    metadata:
+      labels:
+        name: my-app1
+    spec:
+      containers:
+        - name: hello-world
+          image: kabdi384/my-app-image:latest
+          env:
+            - name: PORT
+              value: "8080"
+```
+
+2. Command start minikube:
+
+```
+minikube start
+```
+
+3. Command untuk terapkan konfigurasi:
+
+```
+kubect apply -f 1-create-deployment.yaml
+```
+
+4. Command untuk get list deployments:
+
+```
+kubectl get deployments
+```
+
+5. Command untuk get list pods:
+
+```
+kubectl get pods
+```
+
+6. Command untuk remote ssh ke pod:
+
+```
+kubectl exec -it <nama-pod> -- /bin/sh
+```
+
+7. Command untuk check listened port di linux:
+
+```
+netstat -tulpn
+```
+
+8. Command curl
+
+```
+curl localhost:8080
+```
+
+9. Command install curl di alpine OS:
+
+```
+apk add curl
+```
